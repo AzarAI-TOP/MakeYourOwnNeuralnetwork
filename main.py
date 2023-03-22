@@ -2,7 +2,7 @@
 Author: AzarAI
 Email: 3420396703@qq.com
 Date: 2023-03-16 22:12:43
-LastEditTime: 2023-03-21 22:27:04
+LastEditTime: 2023-03-22 11:31:02
 '''
 import numpy as np
 import pandas as pd
@@ -54,7 +54,7 @@ class NeuralNetwork:
     def train(self, input_lists, target_lists, cycle=1, show_status:bool = False):
         for x in range(cycle):
             for i in range(len(target_lists)):
-                self.train_single(data_train_value[i], data_train_target[i])
+                self.train_single(input_lists[i], target_lists[i])
             print("\tTraining Prcessing: (cycle: ", x+1, "/", cycle, ")")
 
 
