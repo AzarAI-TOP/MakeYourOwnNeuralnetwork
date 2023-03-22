@@ -2,7 +2,7 @@
 Author: AzarAI
 Email: 3420396703@qq.com
 Date: 2023-03-16 22:12:43
-LastEditTime: 2023-03-22 00:26:30
+LastEditTime: 2023-03-22 11:23:00
 '''
 import numpy as np
 import pandas as pd
@@ -45,7 +45,7 @@ class NeuralNetwork:
     def train(self, input_lists, target_lists, cycle=1, show_status:bool = False):
         for x in range(cycle):
             for i in range(len(target_lists)):
-                self.train_single(data_train_value[i], data_train_target[i])
+                self.train_single(input_lists[i], target_lists[i])
             print("\tTraining Prcessing: (cycle: ", x+1, "/", cycle, ")")
 
 
@@ -118,11 +118,11 @@ if __name__ == "__main__":
 
 
     # Data of model-training
-    CYCLE = 20
+    CYCLE = 3
 
     # Train the model
     print("Start training:")
-    network.train(data_train_target, data_train_value, 10, show_status=True)
+    network.train(data_train_target, data_train_value, CYCLE, show_status=True)
     print("\tTraining is finisheed.")
 
     # Show the genes
@@ -131,5 +131,6 @@ if __name__ == "__main__":
         test[i] = 0.99
 
         im = network.query(test).reshape((28, 28))
-        f = plt.imshow(im, cmap="Greys")
+        f = plt.subplot(2, 5, i+1)
+        f.imshow(im, cmap="Greys")
     plt.show()
